@@ -1,0 +1,748 @@
+<h2 mat-dialog-title [title]="data.name">{{title}}</h2>
+<mat-dialog-content class="mat-typography">
+    <h4> Preguntas de perfil </h4>
+
+    <mat-form-field appearance="outline" class="col-6">
+        <mat-label>Resultado de Contacto</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="food">
+            @for (food of foods; track food) {
+                <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    @if(selectedValue == 'Volver a contactar') {
+        <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Seleccione la fecha</mat-label>
+            <input matInput [matDatepicker]="dp3" disabled>
+            <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+    }@else if(selectedValue == 'otro'){
+        <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Especifique</mat-label>
+            <input matInput id="name">
+        </mat-form-field>
+    }
+
+    <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Rango de empleados en su empresa</mat-label>
+        <mat-select name="food">
+            @for (food of foods; track food) {
+                <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-form-field" appearance="outline" class="col-12">
+        <mat-label>Cuantos años lleva en el sector de seguridad electronica?</mat-label>
+        <input matInput type="text">
+    </mat-form-field>
+
+    <h4> Contactos </h4>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="end">
+        <mat-tab label="Gerente general">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                        <mat-option value="option">Masculino</mat-option>
+                        <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                    </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Compras">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                        <!-- Input User -->
+                        <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="name" id="name">
+                        </mat-form-field>
+                        
+                        <!-- Input email -->
+                        <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                            <mat-label>Correo</mat-label>
+                            <input matInput formControlName="email" id="email">
+                        </mat-form-field>
+                        
+                        <!-- Input phoneNumber -->
+                        <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                            <mat-label>Telefono</mat-label>
+                            <input matInput formControlName="phoneNumber" id="phoneNumber">
+                        </mat-form-field>
+                        
+                        <!-- Input gender -->
+                        <mat-form-field  appearance="outline" class="col-3">
+                            <mat-select formControlName="gender">
+                                <mat-option value="option">Masculino</mat-option>
+                                <mat-option value="option">Femenino</mat-option>
+                            </mat-select>
+                            <mat-label></mat-label>
+                            <mat-label>Genero</mat-label>
+                            </mat-form-field>
+                        
+                        <!-- Input observations -->
+                        <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                            <mat-label>Observaciones</mat-label>
+                            <textarea  matInput formControlName="observations" id="observations"></textarea>
+                        </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Mercadeo">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                        <!-- Input User -->
+                        <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                            <mat-option value="option">Masculino</mat-option>
+                            <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                        </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Proyectos">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                          <mat-option value="option">Masculino</mat-option>
+                          <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                      </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Administracion">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                        <mat-option value="option">Masculino</mat-option>
+                        <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                    </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Contaabilidad">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                        <mat-option value="option">Masculino</mat-option>
+                        <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                    </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Gerente de ventas">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                        <mat-option value="option">Masculino</mat-option>
+                        <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                    </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Depto. Tecnico">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                        <mat-option value="option">Masculino</mat-option>
+                        <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                    </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+    </mat-tab-group>
+        
+    <div class="d-block justify-content-center">
+        <section class="justify-content-center mb-3">
+            <h4>Temas de interes</h4>
+            <mat-button-toggle-group
+              name="Temas de interes"
+              [formControl]="interstTopicForm"
+              multiple
+            >
+                <mat-button-toggle value="alarmas">Alarmas</mat-button-toggle>
+                <mat-button-toggle value="incendio">Incendio</mat-button-toggle>
+                <mat-button-toggle value="controlacceso">Control de acceso</mat-button-toggle>
+                <mat-button-toggle value="telecomunicaciones">Telecomunicaciones</mat-button-toggle>
+                <mat-button-toggle value="cctv">CCTV</mat-button-toggle>
+                <mat-button-toggle value="otro">Otro</mat-button-toggle>
+            </mat-button-toggle-group>
+            @if(interstTopicForm.value?.includes('otro')){
+                <mat-form-field appearance="outline" class="mx-5">
+                    <mat-label>Especifique</mat-label>
+                    <input [(ngModel)]="interstTopicOther" matInput id="name">
+                </mat-form-field>
+            }
+        </section>
+
+
+        <section class="col-12 mb-3">
+            <h4>Temas de interes en redes sociales</h4>
+            <mat-button-toggle-group
+              name="ingredients"
+              [formControl]="interstTopicSocialMediaForm"
+              multiple
+            >
+                <mat-button-toggle value="promociones y descuentos">Promociones y descuentos</mat-button-toggle>
+                <mat-button-toggle value="webinars">Webinars</mat-button-toggle>
+                <mat-button-toggle value="nuevos equipos">Nuevos equipos</mat-button-toggle>
+                <mat-button-toggle value="laboratorio y certificaciones">Laboratorio y certificaciones</mat-button-toggle>
+                <mat-button-toggle value="integracion de marcas">Integracion de marcas</mat-button-toggle>
+                <mat-button-toggle value="otro">Otro</mat-button-toggle>
+            </mat-button-toggle-group>
+            @if(interstTopicSocialMediaForm.value?.includes('otro')){
+                <mat-form-field appearance="outline" class="mx-5">
+                    <mat-label>Especifique</mat-label>
+                    <input [(ngModel)]="interstTopicOther" matInput id="name">
+                </mat-form-field>
+            }
+        </section>
+
+        <section class="col-12 mb-3">
+            <h4>Plataformas de busqueda de informacion</h4>
+            <mat-button-toggle-group
+              name="ingredients"
+              [formControl]="socialMediaTopicForm"
+              multiple
+            >
+                <mat-button-toggle value="whatsapp">Whatsapp</mat-button-toggle>
+                <mat-button-toggle value="instagram">Instagram</mat-button-toggle>
+                <mat-button-toggle value="email">Email</mat-button-toggle>
+                <mat-button-toggle value="facebook">Facebook</mat-button-toggle>
+                <mat-button-toggle value="linkedin">Linkedin</mat-button-toggle>
+                <mat-button-toggle value="youtube">Youtube</mat-button-toggle>
+                <mat-button-toggle value="otro">Otro</mat-button-toggle>
+            </mat-button-toggle-group>
+            @if(socialMediaTopicForm.value?.includes('otro')){
+                <mat-form-field appearance="outline" class="mx-5">
+                    <mat-label>Especifique</mat-label>
+                    <input [(ngModel)]="interstTopicOther" matInput id="name">
+                </mat-form-field>
+            }
+        </section>
+    </div>
+
+    <h4> Acercamientos completados</h4>
+    
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="end">
+        <mat-tab label="Gerente general">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                        <mat-option value="option">Masculino</mat-option>
+                        <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                    </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Compras">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                        <!-- Input User -->
+                        <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="name" id="name">
+                        </mat-form-field>
+                        
+                        <!-- Input email -->
+                        <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                            <mat-label>Correo</mat-label>
+                            <input matInput formControlName="email" id="email">
+                        </mat-form-field>
+                        
+                        <!-- Input phoneNumber -->
+                        <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                            <mat-label>Telefono</mat-label>
+                            <input matInput formControlName="phoneNumber" id="phoneNumber">
+                        </mat-form-field>
+                        
+                        <!-- Input gender -->
+                        <mat-form-field  appearance="outline" class="col-3">
+                            <mat-select formControlName="gender">
+                                <mat-option value="option">Masculino</mat-option>
+                                <mat-option value="option">Femenino</mat-option>
+                            </mat-select>
+                            <mat-label></mat-label>
+                            <mat-label>Genero</mat-label>
+                            </mat-form-field>
+                        
+                        <!-- Input observations -->
+                        <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                            <mat-label>Observaciones</mat-label>
+                            <textarea  matInput formControlName="observations" id="observations"></textarea>
+                        </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Mercadeo">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                        <!-- Input User -->
+                        <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                            <mat-option value="option">Masculino</mat-option>
+                            <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                        </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Proyectos">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                          <mat-option value="option">Masculino</mat-option>
+                          <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                      </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Administracion">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                        <mat-option value="option">Masculino</mat-option>
+                        <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                    </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Contaabilidad">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                        <mat-option value="option">Masculino</mat-option>
+                        <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                    </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Gerente de ventas">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                        <mat-option value="option">Masculino</mat-option>
+                        <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                    </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="Depto. Tecnico">
+            <form [formGroup]="contactCustomerForm" (ngSubmit)="onSend()">
+                <div class="d-flex justify-content-center row mt-3 mb-3 mx-auto">
+                    <!-- Input User -->
+                    <mat-form-field appearance="outline" class="col-3 mb-1" style="display: flex;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" id="name">
+                    </mat-form-field>
+                    
+                    <!-- Input email -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="email" id="email">
+                    </mat-form-field>
+                    
+                    <!-- Input phoneNumber -->
+                    <mat-form-field appearance="outline" class="col-3" style="display: flex;">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="phoneNumber" id="phoneNumber">
+                    </mat-form-field>
+                    
+                    <!-- Input gender -->
+                    <mat-form-field  appearance="outline" class="col-3">
+                        <mat-select formControlName="gender">
+                        <mat-option value="option">Masculino</mat-option>
+                        <mat-option value="option">Femenino</mat-option>
+                        </mat-select>
+                        <mat-label></mat-label>
+                        <mat-label>Genero</mat-label>
+                    </mat-form-field>
+                    
+                    <!-- Input observations -->
+                    <mat-form-field appearance="outline" class="col-8" style="display: flex;">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea  matInput formControlName="observations" id="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-tab>
+    </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button (click)="onSend()" cdkFocusInitial>Pendiente</button>
+  <button mat-button (click)="onSend()" cdkFocusInitial>Completado</button>
+</mat-dialog-actions>

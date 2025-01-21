@@ -1,0 +1,56 @@
+@if (isSessionActive()) {
+    <mat-drawer-container class="example-container" [hasBackdrop]="true"  style="width: 100%; height: 100%;">
+        <mat-drawer #drawer [mode]="drawerValue" class="d-block">
+            <div class="col-md-12 mb-5 text-center">
+                <button (click)="navigateTo('')" class="d-block col-12 btn btn-ligh">
+                    <h3 class="fs-2">
+                        <strong>KAYZEN</strong>
+                    </h3>
+                </button>
+              </div>
+            <div>
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    @for (menu of menu; track $index) {
+                        <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#'+menu.father" aria-expanded="false" aria-controls="flush-collapseOne">
+                                {{menu.father}}
+                            </button>
+                        </h2>
+                        @for (item of menu.children; track $index) {
+                            <div id="{{menu.father}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <button mat-button (click)="navigateTo(item.route)"   class="d-block col-12">
+                                    {{item.name}}
+                                </button>
+                            </div>
+                        }
+                        </div>
+                    }
+                  </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="position: absolute; bottom: 0;">
+                <button mat-button (click)="logOut()" class="justify-content-center align-items-center d-flex mb-3" title="Cerrar Sesion">
+                    <mat-icon class="mx-auto">logout</mat-icon>
+                    <span class="mx-auto">
+                        Cerrar Sesion
+                    </span>
+                </button>
+            </div>
+        </mat-drawer>
+        <mat-drawer-content style="background-color: rgb(250, 250, 250);">
+        <button mat-button (click)="drawer.toggle()" class="justify-content-center align-items-center d-flex shadow-sm mt-3 ml-3" style="position: absolute; top: 0; left: 3; background-color: white;" title="Menu">
+            <mat-icon class="mx-auto ">menu</mat-icon>
+        </button>
+        <div class="d-flex justify-content-center align-items-center container vh-100" style="background-color: white;">
+            <div class="row">
+                <router-outlet />
+            </div>
+        </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+}@else{
+    <div style="width: 100%; height: 100%;">
+        <app-login />
+    </div>
+}
+  

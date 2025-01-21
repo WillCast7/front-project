@@ -1,0 +1,125 @@
+<!-- <app-basic-table [columns]="displayedColumns" [names]="displayedNames" [pageable]="pageable" [data]="dataSource" ></app-basic-table> -->
+
+<div class="aling-items-center justify-content-center px-4">
+    <div class="col-md-12 mb-0 d-flex justify-content-between">
+        <div class="col-4">
+            <span class="fs-3">
+                <strong>{{title}}</strong>
+            </span>
+        </div>
+        <div class="d-flex col-6 justify-content-end pt-2">
+            <mat-form-field class="example-form-field col-9" appearance="outline">
+                <mat-label>Buscar</mat-label>
+                <input matInput type="text" [(ngModel)]="searchValue" (keyup)="searchData()">
+                @if (searchValue) {
+                    <button matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''; searchData() ">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                }
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="my-2 border shadow-sm">
+        <table mat-table [dataSource]="dataSource">
+        
+            <!-- Nit Column -->
+            <ng-container matColumnDef="nit">
+                <th mat-header-cell *matHeaderCellDef>{{displayedNames['nit']}}</th>
+                <td mat-cell *matCellDef="let element" [title]="displayedNames['nit'] + ' de ' + element.name.split(' ')[0].toLowerCase()">
+                    {{element.nit}}
+                </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>{{displayedNames['name']}}</th>
+                <td mat-cell *matCellDef="let element" [title]="displayedNames['name'] + ' completo de ' + element.name.split(' ')[0].toLowerCase()">
+                    {{element.name}}
+                </td>
+            </ng-container>
+
+            <!-- sales second year ago Column -->
+            <ng-container matColumnDef="anterior2">
+                <th mat-header-cell *matHeaderCellDef>{{displayedNames['anterior2']}}</th>
+                <td mat-cell *matCellDef="let element" [title]="'total ' + displayedNames['anterior2'] + ' de ' + element.name.split(' ')[0].toLowerCase()">
+                    {{ element.anterior2 | currency: "COP" : "symbol-narrow" : "1.0-2"  }}
+                </td>
+            </ng-container>
+
+            <!-- sales last year ago Column -->
+            <ng-container matColumnDef="anterior1">
+                <th mat-header-cell *matHeaderCellDef>{{displayedNames['anterior1']}}</th>
+                <td mat-cell *matCellDef="let element" [title]="'total ' + displayedNames['anterior1'] + ' de ' + element.name.split(' ')[0].toLowerCase()">
+                    {{ element.anterior1 | currency: "COP" : "symbol-narrow" : "1.0-2"  }}</td>
+            </ng-container>
+
+            <!-- sales present year Column -->
+            <ng-container matColumnDef="actual">
+                <th mat-header-cell *matHeaderCellDef>{{displayedNames['actual']}}</th>
+                <td mat-cell *matCellDef="let element" [title]="'total ' + displayedNames['actual'] + ' de ' + element.name.split(' ')[0].toLowerCase()">
+                    {{ element.actual | currency: "COP" : "symbol-narrow" : "1.0-2"  }}
+                </td>
+            </ng-container>
+            
+            <!-- City Column -->
+            <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef>{{displayedNames['city']}}</th>
+                <td mat-cell *matCellDef="let element" [title]="displayedNames['city'] + ' de ' + element.name.split(' ')[0].toLowerCase()">
+                    {{element.city}}
+                </td>
+            </ng-container>
+            
+            <!-- Asesor Column -->
+            <ng-container matColumnDef="asesor">
+                <th mat-header-cell *matHeaderCellDef>{{displayedNames['asesor']}}</th>
+                <td mat-cell *matCellDef="let element" [title]="displayedNames['asesor'] + ' de ' + element.name.split(' ')[0].toLowerCase()">
+                    {{element.asesor}}
+                </td>
+            </ng-container>
+
+            <!-- Is Completed Column -->
+            <ng-container matColumnDef="completado">
+                <th mat-header-cell *matHeaderCellDef>{{displayedNames['completado']}}</th>
+                <td mat-cell *matCellDef="let element" [title]="'el estado de ' + element.name.split(' ')[0].toLowerCase()"
+                class="text-center">
+                   @if(element.completado == 1){
+                       <mat-icon>radio_button_checked</mat-icon>
+                   }@else if(element.completado == 0){
+                    <mat-icon>radio_button_unchecked</mat-icon>
+                } @else {
+                    
+                }
+                </td>
+            </ng-container>
+        
+        <tfoot>
+            <tr>
+            <td colspan="4">Total</td>
+            <td>total</td>
+            </tr>
+        </tfoot>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+            mat-row
+            (click)="openDialog(row)"
+            *matRowDef="let row; columns: displayedColumns;"
+        ></tr>
+        </table>
+        <div class="border-top">
+
+            <mat-paginator
+                #paginator
+                class="demo-paginator"
+                (page)="handlePageEvent($event)"
+                [length]="pageable.totalElements"
+                [pageSize]="pageable.pageSize"
+                [disabled]="disabled"
+                [showFirstLastButtons]="showFirstLastButtons"
+                [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+                [hidePageSize]="hidePageSize"
+                [pageIndex]="pageable.pageIndex"
+                aria-label="Select page">
+            </mat-paginator>
+        </div>
+    </div>
+  </div> 

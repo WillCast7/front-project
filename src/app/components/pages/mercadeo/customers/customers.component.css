@@ -1,0 +1,16 @@
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+    padding: 1px 8px;
+  }
+  
+.mat-mdc-row :hover {
+    background-color: #f3f3f3;
+
+}
+
+.mat-mdc-row, .mat-header-cell {
+    font-size: 13px; /* Ajusta el tamaño según tus necesidades */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
