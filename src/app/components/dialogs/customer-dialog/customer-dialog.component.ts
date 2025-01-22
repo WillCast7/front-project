@@ -42,11 +42,11 @@ interface Food {
     {provide: DateAdapter, useClass: NativeDateAdapter},
     {provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS}
  ],
-  templateUrl: './customersdialog.component.html',
-  styleUrl: './customersdialog.component.css'
+  templateUrl: './customer-dialog.component.html',
+  styleUrl: './customer-dialog.component.css'
 })
 
-export class CustomersdialogComponent implements OnInit {
+export class CustomerDialogComponent implements OnInit {
   interstTopicForm = new FormControl('');
   interstTopicSocialMediaForm = new FormControl('');
   socialMediaTopicForm = new FormControl('');
@@ -70,7 +70,7 @@ export class CustomersdialogComponent implements OnInit {
       private readonly formBuilder: FormBuilder,
       @Inject(MAT_DIALOG_DATA) public data: CustomerlistInterface
   ) {
-    this.title = "Crear acercamiento con " + data.name.split(' ')[0].toLowerCase();
+    this.title = "Informacion del cliente " + data.name.split(' ')[0].toLowerCase();
   }
 
 

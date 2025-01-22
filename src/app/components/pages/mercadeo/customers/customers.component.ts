@@ -10,16 +10,19 @@ import { CustomerListNamesInterface } from '../../../../models/mercadeo/customer
 import { RestApiService } from '../../../../services/rest-api.service';
 import { AlertService } from '../../../../services/alerts.service';
 import { Router } from '@angular/router';
-import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import {  CurrencyPipe } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { CustomersdialogComponent } from '../../../dialogs/customersdialog/customersdialog.component';
+import { ApproachesDialogComponent } from '../../../dialogs/approaches-dialog/approaches-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { map, Observable, startWith } from 'rxjs';
 import { AdvisorListInitializer, AdvisorListInterface } from '../../../../models/mercadeo/adviserList-interface';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { CustomerBottomSheetComponent } from '../../../bottom-sheets/customer-bottom-sheet/customer-bottom-sheet.component';
+
 
 @Component({
   selector: 'app-customers, currency-pipe',
@@ -36,7 +39,6 @@ import { AdvisorListInitializer, AdvisorListInterface } from '../../../../models
     MatSelectModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    AsyncPipe,
     MatPaginatorModule
 ],
   templateUrl: './customers.component.html',
@@ -80,7 +82,7 @@ export class CustomersComponent implements OnInit {
   pageEvent: PageEvent = new PageEvent;
   readonly dialog = inject(MatDialog);
   searchValue: string= '';
-
+  private _bottomSheet = inject(MatBottomSheet);
   
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
@@ -105,17 +107,9 @@ export class CustomersComponent implements OnInit {
     private readonly router: Router,
   ) {} 
 
-  openDialog(row: CustomerlistInterface) {
-    const dialogRef = this.dialog.open(CustomersdialogComponent, {
-      width: '80%',   // Ajusta el ancho al 80% de la pantalla
-      height: '80%',  // Ajusta la altura al 80% de la pantalla
-      maxWidth: '90vw', // Asegúrate de que no exceda el ancho de la ventana
-      maxHeight: '90vh',
+  openBottomSheet(row: CustomerlistInterface) {
+    this._bottomSheet.open(CustomerBottomSheetComponent,{
       data: row
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
