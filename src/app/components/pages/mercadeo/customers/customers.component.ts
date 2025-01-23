@@ -1,5 +1,4 @@
 import { Component, inject, OnInit  } from '@angular/core';
-import { BasicTableComponent } from "../../../tables/basic-table/basic-table.component";
 import { CustomerInitializer, CustomerlistInterface } from '../../../../models/mercadeo/customerlist-interface';
 import { PageableInitializer, PageableInterface } from '../../../../models/table/pageable-interface';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,18 +9,17 @@ import { CustomerListNamesInterface } from '../../../../models/mercadeo/customer
 import { RestApiService } from '../../../../services/rest-api.service';
 import { AlertService } from '../../../../services/alerts.service';
 import { Router } from '@angular/router';
-import {  CurrencyPipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { ApproachesDialogComponent } from '../../../dialogs/approaches-dialog/approaches-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import { map, Observable, startWith } from 'rxjs';
-import { AdvisorListInitializer, AdvisorListInterface } from '../../../../models/mercadeo/adviserList-interface';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { Observable } from 'rxjs';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CustomerBottomSheetComponent } from '../../../bottom-sheets/customer-bottom-sheet/customer-bottom-sheet.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 @Component({
@@ -39,7 +37,8 @@ import { CustomerBottomSheetComponent } from '../../../bottom-sheets/customer-bo
     MatSelectModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonToggleModule
 ],
   templateUrl: './customers.component.html',
   styleUrl: './customers.component.css'
@@ -83,17 +82,22 @@ export class CustomersComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   searchValue: string= '';
   private _bottomSheet = inject(MatBottomSheet);
-  
+  selectedFilter: string = 'sinIniciar';
+
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.pageable.totalElements = e.length;
     this.pageable.pageSize = e.pageSize;
     this.pageable.pageIndex = e.pageIndex;
-    console.log("this.pageable")
-    console.log(this.pageable)
+   
     this.getData(this.pageable.pageIndex, this.pageable.pageSize, this.searchValue);
   }
 
+  onFilterChange(value: string) {
+    this.selectedFilter = value;
+    
+    this.getData(this.pageable.pageIndex, this.pageable.pageSize, this.searchValue);
+}
 
   ngOnInit() {
     this.getData(this.pageable.pageIndex, this.pageable.pageSize, this.searchValue);
@@ -116,8 +120,9 @@ export class CustomersComponent implements OnInit {
   getData(page: Number, row: Number, searchValue: string) {
     console.log(this.router.url);
     this.dataSource = [];
+    const selectedFilter = this.selectedFilter;
 
-    this.restService.getRequest(this.router.url, {page, row, searchValue}).subscribe({
+    this.restService.getRequest(this.router.url, {page, row, searchValue, selectedFilter}).subscribe({
       next: (objData) => {
         this.dataSource = objData.data;
         this.pageable.totalElements = objData.pageable.totalElements;
